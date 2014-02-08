@@ -10,7 +10,7 @@ package main
 
 import (
   "github.com/codegangsta/martini"
-  "github.com/codegangsta/martini-contrib/sessions"
+  "github.com/martini-contrib/sessions"
 )
 
 func main() {
