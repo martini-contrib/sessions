@@ -1,7 +1,7 @@
 # sessions
 Martini middleware/handler for easy session management.
 
-[API Reference](http://godoc.org/github.com/codegangsta/martini-contrib/sessions)
+[API Reference](http://godoc.org/github.com/martini-contrib/sessions)
 
 ## Usage
 
