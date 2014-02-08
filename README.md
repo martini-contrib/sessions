@@ -1,4 +1,4 @@
-# sessions
+# sessions [![wercker status](https://app.wercker.com/status/af92c7633124fffea8984e48ee0c418b "wercker status")](https://app.wercker.com/project/bykey/af92c7633124fffea8984e48ee0c418b)
 Martini middleware/handler for easy session management.
 
 [API Reference](http://godoc.org/github.com/martini-contrib/sessions)
