@@ -58,6 +58,8 @@ type Session interface {
 	Set(key interface{}, val interface{})
 	// Delete removes the session value associated to the given key.
 	Delete(key interface{})
+	// Clear deletes all values in the session.
+	Clear()
 	// AddFlash adds a flash message to the session.
 	// A single variadic argument is accepted, and it is optional: it defines the flash key.
 	// If not defined "_flash" is used by default.
@@ -115,6 +117,12 @@ func (s *session) Set(key interface{}, val interface{}) {
 func (s *session) Delete(key interface{}) {
 	delete(s.Session().Values, key)
 	s.written = true
+}
+
+func (s *session) Clear() {
+	for key := range s.Session().Values {
+		s.Delete(key)
+	}
 }
 
 func (s *session) AddFlash(value interface{}, vars ...string) {
