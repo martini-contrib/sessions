@@ -146,3 +146,41 @@ func Test_Flashes(t *testing.T) {
 	req3.Header.Set("Cookie", res2.Header().Get("Set-Cookie"))
 	m.ServeHTTP(res3, req3)
 }
+
+func Test_SessionsClear(t *testing.T) {
+	m := martini.Classic()
+	data := map[string]string{
+		"hello":  "world",
+		"foo":    "bar",
+		"apples": "oranges",
+	}
+
+	store := NewCookieStore([]byte("secret123"))
+	m.Use(Sessions("my_session", store))
+
+	m.Get("/testsession", func(session Session) string {
+		for k, v := range data {
+			session.Set(k, v)
+		}
+		session.Clear()
+		return "OK"
+	})
+
+	m.Get("/show", func(session Session) string {
+		for k, v := range data {
+			if session.Get(k) == v {
+				t.Fatal("Session clear failed")
+			}
+		}
+		return "OK"
+	})
+
+	res := httptest.NewRecorder()
+	req, _ := http.NewRequest("GET", "/testsession", nil)
+	m.ServeHTTP(res, req)
+
+	res2 := httptest.NewRecorder()
+	req2, _ := http.NewRequest("GET", "/show", nil)
+	req2.Header.Set("Cookie", res.Header().Get("Set-Cookie"))
+	m.ServeHTTP(res2, req2)
+}
