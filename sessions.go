@@ -3,7 +3,7 @@
 //  package main
 //
 //  import (
-//    "github.com/codegangsta/martini"
+//    "github.com/go-martini/martini"
 //    "github.com/martini-contrib/sessions"
 //  )
 //
@@ -20,7 +20,7 @@
 package sessions
 
 import (
-	"github.com/codegangsta/martini"
+	"github.com/go-martini/martini"
 	"github.com/gorilla/context"
 	"github.com/gorilla/sessions"
 	"log"
